@@ -27,11 +27,6 @@ typealias MutableListMultimap<K, V> = com.google.common.collect.ListMultimap<K, 
 
 // Operators
 
-///**
-// * Same as [com.google.common.collect.ListMultimap.get], but adds support for `get` operator syntax.
-// */
-//operator fun <K, V> MutableListMultimap<K, V>.get(key: K) = this.get(key)
-
 /**
  * Same as [com.google.common.collect.ListMultimap.replaceValues], but adds support for `set` operator syntax.
  */

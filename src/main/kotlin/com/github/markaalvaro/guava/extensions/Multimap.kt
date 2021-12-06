@@ -25,11 +25,6 @@ typealias Multimap<K, V> = com.google.common.collect.Multimap<K, V>
 
 // Operators
 
-///**
-// * Same as [com.google.common.collect.Multimap.get] but adds support for `get` operator syntax.
-// */
-//operator fun <K, V> Multimap<K, V>.get(key: K) = this.get(key)
-
 /**
  * Same as [com.google.common.collect.Multimap.contains] but adds support for `contains` "in" operator syntax.
  */
