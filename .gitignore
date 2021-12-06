@@ -1,0 +1,7 @@
+# IDEA
+build
+out
+.idea
+
+# Gradle
+.gradle
