@@ -4,7 +4,7 @@ import com.google.common.collect.ArrayListMultimap
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MutableListMultimapTest {
+internal class MutableListMultimapTest {
 
     @Test
     fun `test set and plus operators`() {

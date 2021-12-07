@@ -65,7 +65,7 @@ internal class ListMultimapTest {
 
         val expected = ImmutableListMultimap.builder<String, Int>()
             .put("a", 1)
-            .putAll("b", listOf(2, 4))
+            .putAll("b", listOf(2, 4, 2))
             .put("c", 5)
             .build()
         assertEquals(expected, newMultimap)
