@@ -8,7 +8,7 @@ class MutableListMultimapTest {
 
     @Test
     fun `test set and plus operators`() {
-        var multimap = mutableListMultimapOf(
+        val multimap = mutableListMultimapOf(
             "a" to 1,
             "a" to 2,
             "b" to 3

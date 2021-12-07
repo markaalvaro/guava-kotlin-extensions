@@ -21,13 +21,13 @@ This library is not yet publishable and therefore is not available yet.
 
 ### Aliases
 
-Aliases are provided for the collection types to give consistency with Kotlin naming. Note that the inheritence hierarchy is same as in Guava, and so the immutable `ListMultimap` extends the mutable `MutableListMultimap` instead of being the other way around like `List` and `MutableList`.
+Aliases are provided for the collection types to give consistency with Kotlin naming, although these map to concrete classes, not interfaces as Guava does not provide separate mutable and immutable interfaces. Note that the inheritance hierarchy is the same as in Guava, and so the immutable `ListMultimap` and mutable `ListMultimap` both meet the `Multimap` interface, but are not themselves related.
 
 | Alias               | Java Type                                       |
 |---------------------|-------------------------------------------------|
 | Multimap            | com.google.common.collect.Multimap              |
 | ListMultimap        | com.google.common.collect.ImmutableListMultimap |
-| MutableListMultimap | com.google.common.collect.ListMultimap          |
+| MutableListMultimap | com.google.common.collect.ArrayListMultimap     |
 
 Support for tables and multisets is *coming soon*.
 
@@ -51,13 +51,36 @@ val favoriteNumbers = buildListMultimap {
 
 ### Operators
 
-Several operators are supported for clean syntax for accessing and modifying (mutable only) collections.
+Several operators are supported for clean syntax for accessing and modifying collections.
 
 ```kotlin
 val favoriteNumbers = mutableListMultimapOf("Jane" to 4, "Jane" to 5)
-favoriteNumbers += "Eric" to 13
+
+// +  (Note this always returns a mutable copy)
+val allFavoriteNumbers = favoriteNumbers + "Eric" to 13
+
+// +=
 favoriteNumbers += listOf("Nicki" to 100, "Nicki" to 12)
+
+// in
 if ("Eric" to 13 in favoriteNumbers) println("Eric's favorite number is 13!")
+
+// get and set bracket syntax
 println(favoriteNumbers["Jane"])
 favoriteNumbers["Jane"] = listOf(1, 3, 3) // easy as ABC!
+```
+
+### Extensions
+
+You can use extension to obtain mutable or immutable copies of collections, just like with Kotlin's API, and you can obtain `List<Pair>` or some `List` representation of the collection using `toList()`.
+
+```kotlin
+val favoriteNumbers = mutableListMultimapOf("Blake" to 13, "Blake" to 4, "Blake" to 13)
+
+// Copy
+val immutableCopy = favoriteNumbers.toListMultimap()
+val mutableCopy = favoriteNumbers.toMutableListMultimap()
+
+// List representation
+val listRepresentation : List<Pair> = favoriteNumbers.toList()
 ```

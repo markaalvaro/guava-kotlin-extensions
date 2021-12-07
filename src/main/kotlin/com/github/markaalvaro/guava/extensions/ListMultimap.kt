@@ -27,34 +27,6 @@ import com.google.common.collect.ImmutableListMultimap
  */
 typealias ListMultimap<K, V> = ImmutableListMultimap<K, V>
 
-// Operators
-
-/**
- * Makes a [ListMultimap] copy and adds the passed-in [Pair].
- *
- * @param pair the pair representing a key-value mapping to add to the copied multimap
- * @return the new immutable multimap with the added key-value mapping
- */
-operator fun <K, V> ListMultimap<K, V>.plus(pair: Pair<K, V>): ListMultimap<K, V> {
-    val builder = ImmutableListMultimap.builder<K, V>()
-    builder.putAll(this)
-    builder.put(pair.first, pair.second)
-    return builder.build()
-}
-
-/**
- * Makes a [ListMultimap] copy and adding the passed-in [Pair]s.
- *
- * @param pairs the [Pair]s to add to the copy of this multimap
- * @return an immutable copy of this multimap with the specified [Pair]s added
- */
-operator fun <K, V> ListMultimap<K, V>.plus(pairs: List<Pair<K, V>>): ListMultimap<K, V> {
-    val builder = ImmutableListMultimap.builder<K, V>()
-    builder.putAll(this)
-    pairs.forEach { (key, value) -> builder.put(key, value) }
-    return builder.build()
-}
-
 // Creation Methods
 
 /**
