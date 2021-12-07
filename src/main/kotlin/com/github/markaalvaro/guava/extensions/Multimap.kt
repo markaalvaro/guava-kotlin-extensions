@@ -33,16 +33,6 @@ operator fun <K, V> Multimap<K, V>.contains(pair: Pair<K, V>) = this.containsEnt
 // Extensions
 
 /**
- * Same as [com.google.common.collect.Multimap.contains] but provides support for processing [Pair]s, which itself
- * allows destructuring.
- *
- * @param function the operation to perform on each [Pair] in this multimap
- */
-fun <K, V> Multimap<K, V>.forEach(function: (Pair<K, V>) -> Unit) {
-    this.forEach { (key, value) -> function(Pair(key, value)) }
-}
-
-/**
  * @return a [List] of [Pair]s that make up this multimap
  */
 fun <K, V> Multimap<K, V>.toList() = entries().map { (key, value) -> Pair(key, value) }.toList()

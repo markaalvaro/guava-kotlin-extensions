@@ -16,10 +16,9 @@
 package com.github.markaalvaro.guava.extensions
 
 import com.google.common.collect.ImmutableListMultimap
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import kotlin.UnsupportedOperationException
-import kotlin.test.assertFailsWith
 
 internal class ListMultimapTest {
 
@@ -48,13 +47,6 @@ internal class ListMultimapTest {
     }
 
     @Test
-    fun `test set`() {
-        val multimap = listMultimapOf("a" to 1, "b" to 2, "b" to 4)
-
-        assertFailsWith<UnsupportedOperationException> { multimap["c"] = listOf(5, 6) }
-    }
-
-    @Test
     fun `test in`() {
         val multimap = listMultimapOf("a" to 1, "b" to 2, "b" to 4)
 
@@ -68,11 +60,12 @@ internal class ListMultimapTest {
     @Test
     fun `test plus`() {
         val multimap = listMultimapOf("a" to 1, "b" to 2, "b" to 4)
-        val newMultimap = multimap + ("c" to 5)
+        var newMultimap = multimap + ("c" to 5)
+        newMultimap += "b" to 2
 
         val expected = ImmutableListMultimap.builder<String, Int>()
             .put("a", 1)
-            .putAll("b", listOf(2, 4))
+            .putAll("b", listOf(2, 4, 2))
             .put("c", 5)
             .build()
         assertEquals(expected, newMultimap)
