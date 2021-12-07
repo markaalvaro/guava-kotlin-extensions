@@ -40,7 +40,7 @@ operator fun <K, V> MutableListMultimap<K, V>.set(key: K, values: Collection<V>)
  */
 operator fun <K, V> MutableListMultimap<K, V>.plus(pair: Pair<K, V>) : MutableListMultimap<K, V> {
     val copy = toMutableListMultimap()
-    copy[pair.first] = listOf(pair.second)
+    copy.putAll(pair.first, listOf(pair.second))
     return copy
 }
 
@@ -52,7 +52,7 @@ operator fun <K, V> MutableListMultimap<K, V>.plus(pair: Pair<K, V>) : MutableLi
  */
 operator fun <K, V> MutableListMultimap<K, V>.plus(pairs: List<Pair<K, V>>) : MutableListMultimap<K, V> {
     val copy = toMutableListMultimap()
-    pairs.forEach { pair -> copy[pair.first] = listOf(pair.second) }
+    pairs.forEach { pair -> copy.putAll(pair.first, listOf(pair.second)) }
     return copy
 }
 
