@@ -29,11 +29,6 @@ typealias ListMultimap<K, V> = ImmutableListMultimap<K, V>
 
 // Operators
 
-///**
-// * Same as [com.google.common.collect.ImmutableListMultimap.get], but adds support for `get` operator syntax.
-// */
-//operator fun <K, V> ListMultimap<K, V>.get(key: K) = this.get(key)
-
 /**
  * Makes a [ListMultimap] copy and adds the passed-in [Pair].
  *
